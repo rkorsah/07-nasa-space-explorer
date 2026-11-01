@@ -47,6 +47,11 @@
       <p class="range-hint">Archive begins June 16, 1995</p>
     </section>
 
+    <aside class="fact-panel" aria-label="Random space fact">
+      <span class="fact-stamp" aria-hidden="true">DID<br />YOU<br />KNOW?</span>
+      <p><strong>Did you know?</strong><span id="spaceFact"></span></p>
+    </aside>
+
     <section class="results" aria-labelledby="results-title">
       <div class="results-heading">
         <div>
@@ -65,6 +70,18 @@
     <p>Imagery and astronomy data provided by NASA's Astronomy Picture of the Day API.</p>
     <a href="https://apod.nasa.gov/apod/astropix.html" target="_blank" rel="noreferrer">Visit APOD <span aria-hidden="true">↗</span></a>
   </footer>
+
+  <dialog id="imageModal" class="image-modal" aria-labelledby="modalTitle">
+    <div class="modal-content">
+      <button id="closeModal" class="modal-close" type="button" aria-label="Close image details">×</button>
+      <div id="modalMedia" class="modal-media"></div>
+      <div class="modal-copy">
+        <p id="modalDate" class="gallery-date"></p>
+        <h2 id="modalTitle"></h2>
+        <p id="modalExplanation" class="modal-explanation"></p>
+      </div>
+    </div>
+  </dialog>
 
   <script src="js/dateRange.js"></script>
   <script src="js/script.js"></script>

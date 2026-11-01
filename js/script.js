@@ -4,8 +4,24 @@ const dateForm = document.getElementById('dateForm');
 const gallery = document.getElementById('gallery');
 const statusMessage = document.getElementById('status');
 const submitButton = dateForm.querySelector('button');
+const spaceFact = document.getElementById('spaceFact');
+const imageModal = document.getElementById('imageModal');
+const modalMedia = document.getElementById('modalMedia');
+const modalDate = document.getElementById('modalDate');
+const modalTitle = document.getElementById('modalTitle');
+const modalExplanation = document.getElementById('modalExplanation');
+const closeModalButton = document.getElementById('closeModal');
+let currentImages = [];
+
+const spaceFacts = [
+	'A day on Venus is longer than its year.',
+	'Sunlight takes about 8 minutes and 20 seconds to reach Earth.',
+	'Jupiter’s Great Red Spot is a storm that has lasted for centuries.',
+	'Some neutron stars spin hundreds of times every second.'
+];
 
 setupDateInputs(startInput, endInput);
+spaceFact.textContent = spaceFacts[Math.floor(Math.random() * spaceFacts.length)];
 
 // Show a friendly date in each image card.
 function formatDate(dateString) {
@@ -38,6 +54,8 @@ function showMessage(message, isError = false) {
 }
 
 function displayImages(images) {
+	currentImages = images;
+
 	if (images.length === 0) {
 		showMessage('No astronomy pictures were found for those dates.');
 		return;
@@ -55,9 +73,9 @@ function displayImages(images) {
 
 		return `
 			<article class="gallery-item" style="animation-delay: ${Math.min(index * 45, 360)}ms">
-				<a class="gallery-image-link" href="${mediaURL}" target="_blank" rel="noreferrer" aria-label="Open ${imageTitle} in a new tab">
+				<a class="gallery-image-link" href="${mediaURL}" data-image-index="${index}" aria-haspopup="dialog" aria-label="View details for ${imageTitle}">
 					<img src="${thumbnailURL}" alt="${imageTitle}" loading="lazy" />
-					<span class="media-tag">${mediaLabel} ↗</span>
+					<span class="media-tag">${mediaLabel} · VIEW</span>
 				</a>
 				<div class="gallery-copy">
 					<p class="gallery-date">${date}</p>
@@ -70,6 +88,34 @@ function displayImages(images) {
 
 	statusMessage.textContent = `${images.length} ${images.length === 1 ? 'discovery' : 'discoveries'} in this date range`;
 	gallery.setAttribute('aria-busy', 'false');
+}
+
+function openImageModal(image) {
+	const isVideo = image.media_type === 'video';
+	const imageTitle = escapeHTML(image.title);
+	const mediaURL = escapeHTML(image.url);
+
+	modalDate.textContent = formatDate(image.date);
+	modalTitle.textContent = image.title;
+	modalExplanation.textContent = image.explanation;
+
+	if (isVideo) {
+		const thumbnail = image.thumbnail_url
+			? `<img src="${escapeHTML(image.thumbnail_url)}" alt="${imageTitle}" />`
+			: '';
+
+		modalMedia.innerHTML = `
+			<div class="modal-video">
+				${thumbnail}
+				<a href="${mediaURL}" target="_blank" rel="noreferrer">Watch this APOD video <span aria-hidden="true">↗</span></a>
+			</div>
+		`;
+	} else {
+		const fullImageURL = escapeHTML(image.hdurl || image.url);
+		modalMedia.innerHTML = `<img class="modal-image" src="${fullImageURL}" alt="${imageTitle}" />`;
+	}
+
+	imageModal.showModal();
 }
 
 async function getSpaceImages(event) {
@@ -111,6 +157,28 @@ async function getSpaceImages(event) {
 }
 
 dateForm.addEventListener('submit', getSpaceImages);
+
+gallery.addEventListener('click', (event) => {
+	const imageLink = event.target.closest('.gallery-image-link');
+
+	if (!imageLink) {
+		return;
+	}
+
+	event.preventDefault();
+	const image = currentImages[Number(imageLink.dataset.imageIndex)];
+
+	if (image) {
+		openImageModal(image);
+	}
+});
+
+closeModalButton.addEventListener('click', () => imageModal.close());
+imageModal.addEventListener('click', (event) => {
+	if (event.target === imageModal) {
+		imageModal.close();
+	}
+});
 
 // Load the default nine-day range as soon as the page opens.
 getSpaceImages();
