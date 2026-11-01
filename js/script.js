@@ -13,6 +13,9 @@ const modalExplanation = document.getElementById('modalExplanation');
 const closeModalButton = document.getElementById('closeModal');
 let currentImages = [];
 
+// DEMO_KEY is rate-limited; replace it with your NASA API key if needed.
+const apiKey = 'DEMO_KEY';
+
 const spaceFacts = [
 	'A day on Venus is longer than its year.',
 	'Sunlight takes about 8 minutes and 20 seconds to reach Earth.',
@@ -137,7 +140,7 @@ async function getSpaceImages(event) {
 		start_date: startInput.value,
 		end_date: endInput.value,
 		thumbs: 'true',
-		api_key: 'DEMO_KEY'
+		api_key: apiKey
 	});
 
 	try {
