@@ -20,13 +20,14 @@ body {
   min-width: 320px;
   font-family: 'Source Sans 3', sans-serif;
   color: var(--ink);
-  background-color: #edf2f8;
+  background-color: #e8eff9;
   background-image:
-    radial-gradient(ellipse at 12% 18%, rgb(101 153 220 / 13%), transparent 34rem),
-    radial-gradient(ellipse at 88% 58%, rgb(133 157 199 / 12%), transparent 38rem),
-    radial-gradient(#bdcadd 0.6px, transparent 0.6px),
-    linear-gradient(145deg, #f6f8fb 0%, #edf2f8 55%, #f4f6f9 100%);
-  background-size: auto, auto, 18px 18px, auto;
+    radial-gradient(ellipse at 8% 15%, rgb(56 119 207 / 22%), transparent 36rem),
+    radial-gradient(ellipse at 92% 48%, rgb(255 148 72 / 22%), transparent 34rem),
+    radial-gradient(ellipse at 26% 88%, rgb(99 151 224 / 13%), transparent 32rem),
+    radial-gradient(#b8c8dd 0.6px, transparent 0.6px),
+    linear-gradient(145deg, #f4f7fc 0%, #e8eff9 54%, #f9f0e9 100%);
+  background-size: auto, auto, auto, 18px 18px, auto;
 }
 
 .container {
@@ -100,8 +101,8 @@ body {
   color: var(--white);
   background-color: var(--blue);
   background-image:
-    radial-gradient(circle at 85% 22%, rgb(247 199 77 / 20%), transparent 11rem),
-    radial-gradient(circle at 20% 110%, rgb(117 174 255 / 28%), transparent 25rem),
+    radial-gradient(circle at 84% 20%, rgb(255 155 74 / 38%), transparent 13rem),
+    radial-gradient(circle at 18% 110%, rgb(117 174 255 / 34%), transparent 26rem),
     radial-gradient(#ffffff24 0.7px, transparent 0.7px),
     linear-gradient(120deg, #103d83, #164b9b 55%, #1d5eaa);
   background-size: auto, auto, 18px 18px, auto;
