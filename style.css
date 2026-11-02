@@ -20,9 +20,13 @@ body {
   min-width: 320px;
   font-family: 'Source Sans 3', sans-serif;
   color: var(--ink);
-  background-color: var(--paper);
-  background-image: radial-gradient(#cbd4df 0.65px, transparent 0.65px);
-  background-size: 15px 15px;
+  background-color: #edf2f8;
+  background-image:
+    radial-gradient(ellipse at 12% 18%, rgb(101 153 220 / 13%), transparent 34rem),
+    radial-gradient(ellipse at 88% 58%, rgb(133 157 199 / 12%), transparent 38rem),
+    radial-gradient(#bdcadd 0.6px, transparent 0.6px),
+    linear-gradient(145deg, #f6f8fb 0%, #edf2f8 55%, #f4f6f9 100%);
+  background-size: auto, auto, 18px 18px, auto;
 }
 
 .container {
@@ -95,8 +99,12 @@ body {
   overflow: hidden;
   color: var(--white);
   background-color: var(--blue);
-  background-image: radial-gradient(#ffffff24 0.7px, transparent 0.7px);
-  background-size: 18px 18px;
+  background-image:
+    radial-gradient(circle at 85% 22%, rgb(247 199 77 / 20%), transparent 11rem),
+    radial-gradient(circle at 20% 110%, rgb(117 174 255 / 28%), transparent 25rem),
+    radial-gradient(#ffffff24 0.7px, transparent 0.7px),
+    linear-gradient(120deg, #103d83, #164b9b 55%, #1d5eaa);
+  background-size: auto, auto, 18px 18px, auto;
   border-radius: 0 0 3px 3px;
 }
 
